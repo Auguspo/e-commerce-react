@@ -1,24 +1,68 @@
-import logo from './logo.svg';
+import { useState, useEffect } from 'react';
 import './App.css';
 
+import {getCategories, getProducts} from './fetcher';
+import Category from './components/Category';
+
+
 function App() {
+  const [categories, setCategories] = useState({errorMessage: '', data : []})
+  const [products, setProducts] = useState({errorMessage: '', data : []})
+
+  useEffect(() => {
+    const fetchData = async() => {
+      const responseObject = await getCategories()
+      setCategories(responseObject)
+    }
+   
+    fetchData()
+    }, [])
+
+  const handleCategoryClick = id => {
+    const fetchData = async() => {
+      const responseObject = await getProducts(id)
+      setProducts(responseObject)
+    }
+    fetchData()
+
+  }
+
+  const renderCategories = () => {
+    return categories.data.map(c =>
+      <Category key={c.id} id={c.id} title={c.title} onCategoryClick={() => handleCategoryClick(c.id)} />
+    )
+  }
+
+  const renderProducts = () => {
+    return products.data.map(p =>
+      <div>{p.title}</div>)
+  }
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+    <>
+      <header>
+        My Store
       </header>
-    </div>
+
+      <section>
+        <nav>
+          {categories.errorMessage && <div>Error: {categories.errorMessage}</div>}
+          
+          {categories.data && renderCategories()}
+        </nav>
+        <article>
+          <h1>Products</h1>
+          {products.errorMessage && <div>Error: {products.errorMessage}</div>}
+
+          {products && renderProducts()}
+        </article>
+      </section>
+
+      <footer>
+        footer
+      </footer>
+    </>
   );
 }
 
