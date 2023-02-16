@@ -3,7 +3,7 @@ import './App.css';
 
 import {getCategories, getProducts} from './fetcher';
 import Category from './components/category';
-import CategoryProduct from './components/category_product';
+import CategoryProduct from './components/categoryProduct';
 
 function App() {
   const [categories, setCategories] = useState({errorMessage: '', data : []})

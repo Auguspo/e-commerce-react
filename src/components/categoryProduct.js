@@ -1,10 +1,11 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
-const CategoryProduct = ({title, image, specs, features, price, stock}) => {
+const CategoryProduct = ({id, title, image, specs, features, price, stock}) => {
   return (
     <article>
         <div className='category-product-title'>
-            {title}
+           <Link to={`products/${id}`} >{title}</Link>
         </div>
 
         <figure>
