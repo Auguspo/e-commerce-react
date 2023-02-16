@@ -2,8 +2,8 @@ import { useState, useEffect } from 'react';
 import './App.css';
 
 import {getCategories, getProducts} from './fetcher';
-import Category from './components/Category';
-
+import Category from './components/category';
+import CategoryProduct from './components/category_product';
 
 function App() {
   const [categories, setCategories] = useState({errorMessage: '', data : []})
@@ -34,8 +34,8 @@ function App() {
   }
 
   const renderProducts = () => {
-    return products.data.map(p =>
-      <div>{p.title}</div>)
+    return products.data.map(p =><CategoryProduct key={p.id} {...p}>{p.title}</CategoryProduct>
+      )
   }
 
 
@@ -51,12 +51,13 @@ function App() {
           
           {categories.data && renderCategories()}
         </nav>
-        <article>
+        <main>
           <h1>Products</h1>
+
           {products.errorMessage && <div>Error: {products.errorMessage}</div>}
 
           {products && renderProducts()}
-        </article>
+        </main>
       </section>
 
       <footer>
