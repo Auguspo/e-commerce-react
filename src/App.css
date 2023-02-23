@@ -77,6 +77,11 @@ footer {
   padding-left: 10px;
 }
 
+.category-product-image-container{
+  width: 100%;
+  height: 100%;
+}
+
 .category-product-image-container img{
   padding: 10px;
   width: 60%;
