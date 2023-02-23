@@ -1,7 +1,7 @@
 import React from 'react'
 import { useParams } from 'react-router-dom'
 
-import { getProducts } from '../fetcher'
+import { getProductById } from '../fetcher'
 import CategoryProduct
  from './categoryProduct'
 const Category = ({id, title, onCategoryClick}) => {
