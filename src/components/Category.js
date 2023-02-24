@@ -30,7 +30,8 @@ const renderProducts = () => {
 
     {products.errorMessage && <div>Error: {products.errorMessage}</div>}
 
-    {products && renderProducts()}</div>
+    {products && renderProducts()}
+    </div>
   )
 }
 

@@ -10,7 +10,7 @@ import OrderConfimation from './components/orderConfimation';
 import { BrowserRouter,Routes,Route } from 'react-router-dom';
 import Layout from './components/layout';
 import Home from './components/home';
-
+import SearchResults from './components/searchResults';
 
 function App() {
   const [categories, setCategories] = useState({errorMessage: '', data : []})
@@ -34,6 +34,7 @@ function App() {
         <Route path="basket" element={<Basket />} />
         <Route path="checkout" element={<Checkout />} />
         <Route path="orderConfirmation" element={<OrderConfimation />} />
+        <Route path="search" element={<SearchResults />}/>
         <Route path="products/:productId" element={<ProductDetail />} />
         <Route path='categories/:categoryId' element={<Category />} />
       </Route>

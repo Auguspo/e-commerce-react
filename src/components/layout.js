@@ -3,6 +3,8 @@ import { Link, Outlet } from 'react-router-dom'
 
 import { HomeIcon, CartIcon,} from './icons'
 
+import Search from './search'
+
 const Layout = ({categories}) => {
 
     const renderCategories = () => {
@@ -17,6 +19,8 @@ const Layout = ({categories}) => {
            <div id="headerHomeIcon">
             <Link to='/'><HomeIcon width={40} /></Link>
            </div>
+
+           <Search />
            <div id="headerTitle">Our Store</div>
            <div id="headerCartIcon">
             <Link to='/basket'><CartIcon width={40} /></Link>
