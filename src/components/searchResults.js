@@ -1,24 +1,26 @@
-import React from 'react'
-import { useEffect } from 'react'
-import { useSearchParams } from 'react-router-dom'
-import { getProductsByQuery } from '../fetcher'
-import CategoryProduct from './categoryProduct'
+import React, { useEffect } from "react";
+
+import { useSearchParams } from "react-router-dom";
+import { getProductsByQuery } from "../fetcher";
+
+import CategoryProduct from "./categoryProduct";
 
 const SearchResults = () => {
     const [products, setProducts] = React.useState({
-    errorMessage: '',
+        errorMessage: "",
         data: [],
     });
 
-  const [searchParams] = useSearchParams()
-  const query = searchParams.get('s')
+    let [searchParams ] = useSearchParams();
+    let query = searchParams.get("s");
 
     useEffect(() => {
         const fetchData = async () => {
-      const responseObject = await getProductsByQuery(query)
-    }
-    fetchData()
-  }, [query])
+            const responseObject = await getProductsByQuery(query);
+            setProducts(responseObject);
+        };
+        fetchData();
+    }, [query]);
 
     const renderProducts = () => {
         if (products.data.length > 0) {

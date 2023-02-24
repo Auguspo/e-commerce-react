@@ -21,7 +21,7 @@ function App() {
         data: [],
     });
 
-    React.useEffect(() => {
+   useEffect(() => {
         const fetchData = async () => {
             const responseObject = await getCategories();
             setCategories(responseObject);
@@ -30,21 +30,27 @@ function App() {
     }, []);
 
     return (
-
-        <BrowserRouter>
-            <Routes>
+        <>
+            <BrowserRouter>
+                <Routes>
                 <Route path="/" element={<Layout categories={categories} />}>
-                    <Route index element={<Home />} />
-                    <Route path="basket" element={<Basket />} />
-                    <Route path="checkout" element={<Checkout />} />
-                    <Route path="orderConfirmation" element={<OrderConfirmation />} />
-                    <Route path="search" element={<SearchResults />} />
-                    <Route path="products/:productId" element={<ProductDetail />} />
-                    <Route path='categories/:categoryId' element={<Category />} />
-                </Route>
-            </Routes>
-
-        </BrowserRouter>
+                        <Route index element={<Home />} />
+                        <Route path="basket" element={<Basket />} />
+                        <Route path="checkout" element={<Checkout />} />
+                        <Route path="orderConfirmation" element={<OrderConfirmation />} />
+                        <Route path="search" element={<SearchResults />} />
+                        <Route
+                            path="categories/:categoryId"
+                            element={<Category />}
+                        />
+                        <Route
+                            path="products/:productId"
+                            element={<ProductDetail />}
+                        />
+                    </Route>
+                </Routes>
+            </BrowserRouter>
+        </>
     );
 }
 

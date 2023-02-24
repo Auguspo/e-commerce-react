@@ -1,19 +1,20 @@
-import React from 'react'
-import { useParams } from 'react-router-dom'
+import React from "react";
 
-import { getProductById } from '../fetcher'
-import CategoryProduct
-  from './categoryProduct'
-const Category = ({ id, title, onCategoryClick }) => {
+import { useParams } from "react-router-dom";
+import { getProducts } from "../fetcher";
+
+import CategoryProduct from "./categoryProduct";
+
+const Category = () => {
     const [products, setProducts] = React.useState({
-    errorMessage: '',
+        errorMessage: "",
         data: [],
-  })
-  const { categoryId } = useParams()
+    });
+    const { categoryId } = useParams();
 
     React.useEffect(() => {
         const fetchData = async () => {
-      const responseObject = await getProductById(categoryId);
+          const responseObject = await getProducts(categoryId);
             setProducts(responseObject);
         };
         fetchData();
@@ -31,7 +32,7 @@ const Category = ({ id, title, onCategoryClick }) => {
         <div>
             {products.errorMessage && <div>Error: {products.errorMessage}</div>}
 
-      {products && renderProducts()}
+            {products.data && renderProducts()}
         </div>
     );
 };
