@@ -4,43 +4,50 @@ const Storage = (cartItems) =>{
 
 export const CartReducer = (state, action) => {
 
-    let index = -1;
+  let index = -1;
+  if (action.payload)
+    index = state.cartItems.findIndex(x => x.id === action.payload.id);
+  
+  let newItems = [...state.cartItems];
 
-    if (action.payload)
-        index = state.cartItems.findindex(x => x.id === action.payload.id)
-        let newItems = [...state.cartItems]
-    switch (action.type) {
-        case "ADD":
-        case "INCQTY":
-            if (index === -1) {
-                newItems.push({ ...action.payload, quantity: 1 })
-            }
-            else {
-                newItems[index].quantity++;
-            }
-            break
+  switch (action.type) {
+    case "ADD":
+    case "INCQTY":
+      if (index === -1) {
+        //state.cartItems.push({ ...action.payload, quantity: 1 }); // BAD WAY
+        newItems.push({ ...action.payload, quantity: 1 }); // GOOD WAY
+      }
+      else {
+        newItems[index].quantity++;
+        //state.cartItems[index].quantity++;
+      }
+      break;
+  
+    case "REMOVE":
+      if (index > -1) {
+        //state.cartItems.splice(index, 1); // BAD WAY
+        newItems = state.cartItems.filter(x => x.id !== action.payload.id); // GOOD WAY
+      }
+      break;
+       
+    case "DECQTY":
+      if (index > -1) {
+        if (newItems[index].quantity > 1)
+          newItems[index].quantity--;
+        //state.cartItems[index].quantity--;
+      }
+      break;
+    
+    case "CLEAR":
+      newItems = [];
+      break;
+      
+    default:
+  }
 
-        case "REMOVE":
-            if (index > -1) { 
-                newItems = state.cartItems.filter( x=> x.id!== action.payload.id); }
-            break
+  state.cartItems = newItems;
+  Storage(newItems);
 
-        case "DECQTY":
-            if (newItems[index].quantity > 1) {
-                newItems[index].quantity--;
-                
-            }
-            break;
+  return state;
 
-        case "CLEAR":
-           newItems = []
-            break;
-
-        default:
-
-    }
-    state.cartItems = newItems
-    Storage(newItems)
-
-    return state
 }
