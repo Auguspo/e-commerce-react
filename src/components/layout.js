@@ -1,7 +1,6 @@
 import React from 'react'
 import { Link, Outlet } from 'react-router-dom'
 
-import { Outlet, Link } from "react-router-dom";
 
 import { HomeIcon, CartIcon } from "./icons";
 import Search from "./search";

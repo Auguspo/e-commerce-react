@@ -1,3 +1,4 @@
+import React from 'react';
 import { useState, useEffect } from 'react';
 import './App.css';
 
@@ -10,7 +11,7 @@ import Basket from "./components/basket";
 import Checkout from "./components/checkout";
 import Category from "./components/category";
 import Home from "./components/home";
-import OrderConfirmation from "./components/orderconfirmation";
+import OrderConfirmation from "./components/orderConfirmation";
 import Layout from "./components/layout";
 import SearchResults from "./components/searchResults";
 
@@ -29,21 +30,21 @@ function App() {
     }, []);
 
     return (
-    
-            <BrowserRouter>
-                <Routes>
-      <Route path="/" element={<Layout categories={categories}/>}>
-                        <Route index element={<Home />} />
-                        <Route path="basket" element={<Basket />} />
-                        <Route path="checkout" element={<Checkout />} />
-        <Route path="orderConfirmation" element={<OrderConfimation />} />
-        <Route path="search" element={<SearchResults />}/>
-        <Route path="products/:productId" element={<ProductDetail />} />
-        <Route path='categories/:categoryId' element={<Category />} />
-                    </Route>
-                </Routes>
-    
-            </BrowserRouter>
+
+        <BrowserRouter>
+            <Routes>
+                <Route path="/" element={<Layout categories={categories} />}>
+                    <Route index element={<Home />} />
+                    <Route path="basket" element={<Basket />} />
+                    <Route path="checkout" element={<Checkout />} />
+                    <Route path="orderConfirmation" element={<OrderConfirmation />} />
+                    <Route path="search" element={<SearchResults />} />
+                    <Route path="products/:productId" element={<ProductDetail />} />
+                    <Route path='categories/:categoryId' element={<Category />} />
+                </Route>
+            </Routes>
+
+        </BrowserRouter>
     );
 }
 

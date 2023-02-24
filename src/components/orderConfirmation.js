@@ -1,6 +1,6 @@
 import React from 'react'
 
-const OrderConfimation = () => {
+const OrderConfirmation = () => {
   return (
     <>
     <div>Order Confimation</div>
@@ -9,4 +9,4 @@ const OrderConfimation = () => {
   )
 }
 
-export default OrderConfimation
+export default OrderConfirmation
