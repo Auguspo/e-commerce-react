@@ -7,7 +7,7 @@ import { CartContext } from "../contexts/cartContext";
 
 import { TrashIcon, UpIcon, DownIcon } from "./icons";
 
-
+import { formatNumber } from "../utils";
 
 const Basket = () => {
     const [cartItems, setCartItems] = useState([]);
@@ -38,7 +38,7 @@ const Basket = () => {
                             ></TrashIcon>
 
                     </BasketQty>
-                    
+                    <BasketPrice>{formatNumber(p.price)}</BasketPrice>
                 </React.Fragment>
             ));
         } else {
@@ -72,7 +72,7 @@ const Basket = () => {
             </BasketTable>
 
           <BasketButton onClick={() => setCartItems(clearBasket())}>Clear</BasketButton>
-        <BasketTotal>Total: {renderTotal()}</BasketTotal>
+            <BasketTotal>Total: {formatNumber(renderTotal())}</BasketTotal>
         </BasketContainer>
     );
 };

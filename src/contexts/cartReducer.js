@@ -22,7 +22,7 @@ export const CartReducer = (state, action) => {
 
         case "REMOVE":
             if (index > -1) { 
-                newItems = state.cartItems.filter(z=> x.id!== action.payload.id); }
+                newItems = state.cartItems.filter( x=> x.id!== action.payload.id); }
             break
 
         case "DECQTY":

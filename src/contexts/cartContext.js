@@ -1,59 +1,63 @@
-import React,{createContext, useReducer} from "react";
+import React, { createContext, useReducer } from "react";
+
 import { CartReducer } from "./cartReducer";
 
 export const CartContext = createContext();
 
-const Storage = localStorage.getItems('cart') ? JSON.parse(localStorage.getItem(cart)) : []
+const Storage =  sessionStorage.getItem('cart') ? JSON.parse(sessionStorage.getItem('cart')) : [];
 
 const initialState = { cartItems: Storage}
 
-const CartContextProvider = ({children})=>{
-    const [state, dispatch] =useReducer(CartReducer, initialState)
+const CartContextProvider = ({ children }) => {
+  const [state, dispatch] = useReducer(CartReducer, initialState);
 
-    const addProduct = payload=>{
-        dispatch({type:'ADD', payload})   
-        return state.cartItems     
-    }
+  const addProduct = payload => {
+    dispatch({ type: 'ADD', payload });
+    return state.cartItems;
+  }
 
-    const removeProduct = payload => {
-        dispatch({type:'REMOVE', payload})  
-        return state.cartItems
-    }
+  const removeProduct = payload =>
+  {
+    dispatch({ type: 'REMOVE', payload });
+    return state.cartItems;
+  }
 
-    const increaseQuantity = payload => {
-        dispatch({type:'INCQTY', payload})  
-        return state.cartItems
-    }
-    
-    const decreaseQuantity = payload => {
-        dispatch({type:'DECQTY', payload})  
-        return state.cartItems
-    }
+  const increaseQuantity = payload => 
+  {
+    dispatch({ type: 'INCQTY', payload });
+    return state.cartItems;
+  }
 
-    const clearBasket = () => {
-        dispatch({type:'CLEAR', payload: undefined})  
-        return state.cartItems
-    }
+  const decreaseQuantity = payload => 
+  {
+    dispatch({ type: 'DECQTY', payload });
+    return state.cartItems;
+  }
 
-    const getItems = () => {
-        return state.cartItems
-    }
+  const clearBasket = () => {
+    dispatch({ type: 'CLEAR', payload: undefined });
+    return state.cartItems;
+  }
 
-    const contextValues={
-        addProduct,
-        removeProduct,
-        increaseQuantity,
-        decreaseQuantity,
-        clearBasket,
-        getItems,
-        ...state
-    }
+  const getCartItems = () => {
+    return state.cartItems;
+  }
 
-    return(
-        <CartContext.Provider value={contextValues}>
-            {children}
-        </CartContext.Provider>
-    )
+  const contextValues = {
+    addProduct,
+    removeProduct,
+    increaseQuantity,
+    decreaseQuantity,
+    clearBasket,
+    getCartItems,
+    ...state
+  }
+
+  return (
+    <CartContext.Provider value={contextValues} >
+      {children}
+    </CartContext.Provider>
+  )
 }
 
-export default CartContextProvider
+export default CartContextProvider;
