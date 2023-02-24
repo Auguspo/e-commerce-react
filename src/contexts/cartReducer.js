@@ -1,3 +1,7 @@
+const Storage = (cartItems) =>{
+    localStorage.setItem('cart', JSON.stringify(cartItems.length > 0 ? cartItems : []))
+}
+
 export const CartReducer = (state, action) => {
 
     let index = -1;
@@ -35,7 +39,8 @@ export const CartReducer = (state, action) => {
         default:
 
     }
-    state.cartItems=newItems
+    state.cartItems = newItems
+    Storage(newItems)
 
     return state
 }
