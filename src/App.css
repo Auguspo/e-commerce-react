@@ -3,6 +3,10 @@
   padding: 0px;
   margin: 0px;
 }
+a{
+  color:darkslategray;
+  text-decoration: none;
+}
 
 body {
   font-family: Arial, Helvetica, sans-serif;
@@ -15,9 +19,26 @@ header {
   text-align: center;
   font-size: 35px;
   color: white;
+  display:grid;
+  grid-template-columns: 0.1fr 1fr 0.1fr;
 
 }
+header a {
+  color:white 
+;
+}
 
+#headerHomeIcon{
+  justify-self: start;
+}
+
+#headerTitle{
+  justify-self: center;
+}
+
+#headerCartIcon{
+  justify-self: end;
+}
 /* Container for flexboxes */
 section {
   display: -webkit-flex;
@@ -66,6 +87,10 @@ footer {
   background-color: #777;
   padding: 10px;
   text-align: center;
+  color: white;
+}
+
+footer a {
   color: white;
 }
 
